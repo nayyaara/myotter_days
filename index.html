@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#c5e7ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="Otter Alert EXE — a suspiciously cute birthday incident. Sebuah game ulang tahun interaktif bertema retro OS pastel."
+    />
+    <title>OTTER_BIRTHDAY — A suspiciously cute birthday incident</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <symbol id="i-heart" viewBox="0 0 24 24">
+        <path
+          d="M12 21S4.5 16.6 2.6 12.4A5.4 5.4 0 0 1 12 6.4a5.4 5.4 0 0 1 9.4 6C19.5 16.6 12 21 12 21Z"
+        />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" />
+        <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
+        <circle cx="12" cy="15.5" r="1.4" />
+      </symbol>
+      <symbol id="i-arrow-left" viewBox="0 0 24 24">
+        <path d="M15 19 7 12l8-7" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M20 6 9.5 16.5 4 11" />
+      </symbol>
+      <symbol id="i-fish" viewBox="0 0 24 24">
+        <path
+          d="M2.5 12c3.4-4.3 8.7-5.4 13.2-2l2.8-2.6v9.2L15.7 14c-4.5 3.4-9.8 2.3-13.2-2Z"
+        />
+        <circle cx="7.6" cy="11.2" r="1.1" />
+      </symbol>
+      <symbol id="i-cake" viewBox="0 0 24 24">
+        <path d="M4 20h16v-6H4z" />
+        <path d="M6 14V9.5h12V14" />
+        <path d="M9 9.5V6M12 9.5V5M15 9.5V6" />
+        <path
+          d="M9 4.6c0 .8.9.8.9 1.6M12 3.6c0 .8.9.8.9 1.6M15 4.6c0 .8.9.8.9 1.6"
+        />
+      </symbol>
+      <symbol id="i-note" viewBox="0 0 24 24">
+        <rect x="4.5" y="3.5" width="15" height="17" rx="2" />
+        <path d="M8 8h8M8 12h8M8 16h5" />
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <rect x="3" y="7" width="18" height="12.5" rx="3" />
+        <path d="M8 7 9.6 4h4.8L16 7" />
+        <circle cx="12" cy="13" r="3.6" />
+      </symbol>
+      <symbol id="i-mountain" viewBox="0 0 24 24">
+        <path d="m2.5 19 6.5-11 3.4 5.6L15 9l6.5 10Z" />
+        <path d="m7 12 2 2 2-1.4" />
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path
+          d="M12 2.5c.6 5.2 2.3 6.9 7.5 7.5-5.2.6-6.9 2.3-7.5 7.5-.6-5.2-2.3-6.9-7.5-7.5 5.2-.6 6.9-2.3 7.5-7.5Z"
+        />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24">
+        <path
+          d="M12 3c.4 4 1.6 5.2 5.6 5.6-4 .4-5.2 1.6-5.6 5.6-.4-4-1.6-5.2-5.6-5.6 4-.4 5.2-1.6 5.6-5.6Z"
+        />
+        <path
+          d="M18.5 14.5c.2 2 .8 2.6 2.8 2.8-2 .2-2.6.8-2.8 2.8-.2-2-.8-2.6-2.8-2.8 2-.2 2.6-.8 2.8-2.8Z"
+        />
+      </symbol>
+    </svg>
+
+    <div class="game" id="app" data-screen-active="boot">
+      <div class="glow glow--sky" aria-hidden="true"></div>
+      <div class="glow glow--blue" aria-hidden="true"></div>
+
+      <header class="os-bar">
+        <div class="os-bar__lights" aria-hidden="true">
+          <span class="light light--sky"></span>
+          <span class="light light--cream"></span>
+          <span class="light light--blue"></span>
+        </div>
+        <p class="os-bar__title">OTTER_ALERT</p>
+        <div class="os-bar__actions">
+          <button
+            class="btn btn--ghost btn--small os-bar__reset"
+            id="btn-reset"
+            type="button"
+            title="Reset Progres"
+          >
+            RESET
+          </button>
+        </div>
+        <p class="os-bar__status">
+          <span class="status-dot" aria-hidden="true"></span>LIVE
+        </p>
+      </header>
+
+      <main class="stage" id="stage">
+        <section
+          class="screen screen--boot is-active"
+          id="screen-boot"
+          data-screen="boot"
+          aria-label="Layar boot"
+        >
+          <div class="boot-hero">
+            <div class="mascot">
+              <span class="mascot__halo" aria-hidden="true"></span>
+              <svg
+                class="mascot__svg"
+                viewBox="0 0 128 128"
+                role="img"
+                aria-label="Maskot otter memakai topi pesta"
+              >
+                <path
+                  d="M71 4 86 32H56Z"
+                  fill="#C5E7FF"
+                  stroke="#332B3A"
+                  stroke-width="3"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="71"
+                  cy="5"
+                  r="5.5"
+                  fill="#A3D6FA"
+                  stroke="#332B3A"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M60 24h22"
+                  stroke="#5FA8D3"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="26"
+                  cy="37"
+                  r="13"
+                  fill="#C98F68"
+                  stroke="#332B3A"
+                  stroke-width="3.5"
+                />
+                <circle
+                  cx="102"
+                  cy="37"
+                  r="13"
+                  fill="#C98F68"
+                  stroke="#332B3A"
+                  stroke-width="3.5"
+                />
+                <circle cx="26" cy="37" r="6" fill="#F1C3A3" />
+                <circle cx="102" cy="37" r="6" fill="#F1C3A3" />
+                <ellipse
+                  cx="64"
+                  cy="70"
+                  rx="43"
+                  ry="40"
+                  fill="#DDA77B"
+                  stroke="#332B3A"
+                  stroke-width="3.5"
+                />
+                <ellipse
+                  cx="64"
+                  cy="86"
+                  rx="26"
+                  ry="19"
+                  fill="#FBEBDD"
+                  stroke="#332B3A"
+                  stroke-width="3"
+                />
+                <circle cx="46" cy="64" r="5.5" fill="#332B3A" />
+                <circle cx="82" cy="64" r="5.5" fill="#332B3A" />
+                <circle cx="47.6" cy="62.4" r="1.8" fill="#FFFDF6" />
+                <circle cx="83.6" cy="62.4" r="1.8" fill="#FFFDF6" />
+                <ellipse cx="64" cy="77" rx="7" ry="5" fill="#332B3A" />
+                <path
+                  d="M57 86c2.2 3.2 5 4.8 7 4.8s4.8-1.6 7-4.8"
+                  fill="none"
+                  stroke="#332B3A"
+                  stroke-width="2.8"
+                  stroke-linecap="round"
+                />
+                <circle cx="33" cy="78" r="5" fill="#A3D6FA" opacity=".85" />
+                <circle cx="95" cy="78" r="5" fill="#A3D6FA" opacity=".85" />
+                <path
+                  d="m23 71-11-3M23 78l-12 2M105 71l11-3M105 78l12 2"
+                  stroke="#332B3A"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  opacity=".55"
+                />
+              </svg>
+              <span class="mascot__badge" aria-hidden="true">!</span>
+            </div>
+
+            <h1 class="logo">
+              <span class="logo__word" data-text="OTTER_ALERT"
+                >OTTER_ALERT</span
+              >
+              <span class="logo__exe">.EXE</span>
+            </h1>
+            <p class="tagline">A suspiciously cute birthday incident</p>
+          </div>
+
+          <div class="window window--error">
+            <div class="window__bar">
+              <span class="window__dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+              <span class="window__title">SYSTEM_ERROR 0xBDAY</span>
+              <span class="window__grip" aria-hidden="true"></span>
+            </div>
+            <div class="window__body">
+              <p class="error-line">
+                <span class="error-tag">WARNING</span> Birthday protocol gagal
+                dimuat.
+              </p>
+              <p class="error-copy" id="boot-error-copy">
+                Terdeteksi satu otter mencurigakan membawa kue. Sistem kewalahan
+                oleh kadar menggemaskan yang melebihi batas aman.
+              </p>
+              <p class="terminal-line" aria-hidden="true">
+                C:\OTTER&gt; run birthday.exe<span class="caret"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button
+              class="btn btn--ghost btn--grow"
+              id="btn-retry"
+              type="button"
+              data-action="retry"
+            >
+              Retry
+            </button>
+            <button
+              class="btn btn--primary btn--grow"
+              id="btn-start"
+              type="button"
+              data-go="box"
+              hidden
+            >
+              Start
+            </button>
+          </div>
+
+          <div class="boot-footer">
+            <p class="fineprint">
+              v1.0.4 · OTTER_ALERT · dibuat dengan sepenuh hati dari orang
+              terkasih
+            </p>
+            <button class="link-btn" id="btn-reset-progress" type="button">
+              Reset Progress
+            </button>
+          </div>
+        </section>
+
+        <section
+          class="screen"
+          id="screen-box"
+          data-screen="box"
+          aria-label="Layar peti misteri"
+          aria-hidden="true"
+        >
+          <div class="screen__head">
+            <span class="eyebrow">INCOMING PACKAGE</span>
+            <span class="chip chip--blue">1 ITEM</span>
+          </div>
+
+          <div class="box-stage">
+            <span class="sparkle sparkle--one" aria-hidden="true"
+              ><svg viewBox="0 0 24 24"><use href="#i-sparkle" /></svg
+            ></span>
+            <span class="sparkle sparkle--two" aria-hidden="true"
+              ><svg viewBox="0 0 24 24"><use href="#i-sparkle" /></svg
+            ></span>
+            <span class="sparkle sparkle--three" aria-hidden="true"
+              ><svg viewBox="0 0 24 24"><use href="#i-star" /></svg
+            ></span>
+            <svg
+              class="mystery-box"
+              viewBox="0 0 180 164"
+              role="button"
+              tabindex="0"
+              aria-label="Ketuk peti misteri untuk membuka dialog"
+              aria-describedby="box-caption"
+            >
+              <ellipse
+                cx="90"
+                cy="148"
+                rx="58"
+                ry="9"
+                fill="#332B3A"
+                opacity=".15"
+              />
+              <ellipse
+                cx="90"
+                cy="82"
+                rx="70"
+                ry="62"
+                fill="#E3F3FF"
+                opacity=".75"
+              />
+              <rect
+                x="34"
+                y="70"
+                width="112"
+                height="68"
+                rx="9"
+                fill="#C5E7FF"
+                stroke="#332B3A"
+                stroke-width="4"
+              />
+              <rect
+                x="42"
+                y="82"
+                width="96"
+                height="48"
+                rx="5"
+                fill="#E3F3FF"
+                stroke="#332B3A"
+                stroke-width="2.5"
+              />
+              <rect
+                x="27"
+                y="46"
+                width="126"
+                height="28"
+                rx="8"
+                fill="#89CFF0"
+                stroke="#332B3A"
+                stroke-width="4"
+              />
+              <rect
+                x="81"
+                y="46"
+                width="18"
+                height="92"
+                fill="#FFF6E6"
+                stroke="#332B3A"
+                stroke-width="2.5"
+              />
+              <rect
+                x="34"
+                y="78"
+                width="112"
+                height="11"
+                fill="#FFF6E6"
+                stroke="#332B3A"
+                stroke-width="2"
+              />
+              <circle
+                cx="90"
+                cy="96"
+                r="18"
+                fill="#5FA8D3"
+                stroke="#332B3A"
+                stroke-width="3.5"
+              />
+              <text
+                x="90"
+                y="104"
+                text-anchor="middle"
+                font-family="'Press Start 2P', monospace"
+                font-size="17"
+                fill="#FFF6E6"
+              >
+                ?
+              </text>
+              <path
+                d="M27 34l3.5 8.5L39 46l-8.5 3.5L27 58l-3.5-8.5L15 46l8.5-3.5Z"
+                fill="#A3D6FA"
+                stroke="#332B3A"
+                stroke-width="2.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M148 20l2.6 6.4L157 29l-6.4 2.6L148 38l-2.6-6.4L139 29l6.4-2.6Z"
+                fill="#C5E7FF"
+                stroke="#332B3A"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class="box-caption" id="box-caption">
+              ISI: ??? · BERAT: 1.2 KG DAN TERUS MENGEMBANG
+            </p>
+          </div>
+
+          <div class="window window--sky dialog">
+            <div class="window__bar">
+              <span class="window__dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+              <span class="window__title">CEO_MEOW</span>
+              <span class="window__grip" aria-hidden="true"></span>
+            </div>
+            <div class="window__body dialog__body">
+              <div class="avatar" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <path
+                    d="M12 26 10 8l16 8h12l16-8-2 18"
+                    fill="#C5E7FF"
+                    stroke="#332B3A"
+                    stroke-width="2.6"
+                    stroke-linejoin="round"
+                  />
+                  <circle
+                    cx="32"
+                    cy="35"
+                    r="19"
+                    fill="#FFF6E6"
+                    stroke="#332B3A"
+                    stroke-width="2.6"
+                  />
+                  <circle cx="25" cy="33" r="2.6" fill="#332B3A" />
+                  <circle cx="39" cy="33" r="2.6" fill="#332B3A" />
+                  <path d="M32 38l2.6 2h-5.2Z" fill="#5FA8D3" />
+                  <path
+                    d="M32 40c-1.4 2.4-4 2.4-5.4.8M32 40c1.4 2.4 4 2.4 5.4.8"
+                    fill="none"
+                    stroke="#332B3A"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M13 36l-8-1M13 40l-8 2M51 36l8-1M51 40l8 2"
+                    stroke="#332B3A"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    opacity=".6"
+                  />
+                </svg>
+              </div>
+              <div class="dialog__bubble">
+                <p class="dialog__name">CEO Meow</p>
+                <p class="dialog__text" id="dialog-text">
+                  &ldquo;Peti ini dikirim tanpa nama pengirim. Sebelum dibuka,
+                  sistem butuh identitasmu. Jangan bohong &mdash; kucing tahu
+                  segalanya.&rdquo;
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <form class="name-form" id="player-form" autocomplete="off">
+            <label class="field-label" for="player-name-input"
+              >Nama panggilanmu</label
+            >
+            <div class="field-row">
+              <input
+                class="text-input"
+                id="player-name-input"
+                name="playerName"
+                type="text"
+                maxlength="16"
+                placeholder="cth. Otter Kecil"
+                autocomplete="nickname"
+                autocapitalize="words"
+                spellcheck="false"
+                required
+              />
+              <button class="btn btn--primary" id="btn-enter" type="submit">
+                Buka
+              </button>
+            </div>
+            <p class="field-hint">
+              Nama ini akan dicetak di sertifikat insiden.
+            </p>
+          </form>
+
+          <button class="link-btn" type="button" data-go="boot">
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#i-arrow-left" /></svg
+            >kembali ke boot
+          </button>
+        </section>
+
+        <section
+          class="screen"
+          id="screen-puzzle"
+          data-screen="puzzle"
+          aria-label="Layar brainrot puzzle"
+          aria-hidden="true"
+        >
+          <div class="screen__head">
+            <span class="eyebrow">BRAINROT PUZZLE</span>
+            <span class="chip">PUZZLE 1 / 3</span>
+          </div>
+
+          <div class="window window--quiz">
+            <div class="window__bar">
+              <span class="window__dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+              <span class="window__title">question</span>
+              <span class="window__grip" aria-hidden="true"></span>
+            </div>
+            <div class="window__body">
+              <p class="quiz__kicker">OTAK DIUJI OLEH BRAINROT COUNCIL</p>
+              <p class="quiz__question" id="puzzle-question">
+                Kenapa otter selalu membawa batu ke mana-mana?
+              </p>
+              <div
+                class="options"
+                id="puzzle-options"
+                role="group"
+                aria-label="Pilihan jawaban"
+              >
+                <button class="option" type="button" data-index="0">
+                  <span class="option__key" aria-hidden="true">A</span>
+                  <span class="option__text">Untuk koleksi batu langka</span>
+                </button>
+                <button class="option" type="button" data-index="1">
+                  <span class="option__key" aria-hidden="true">B</span>
+                  <span class="option__text">Alat andalan membuka kerang</span>
+                </button>
+                <button class="option" type="button" data-index="2">
+                  <span class="option__key" aria-hidden="true">C</span>
+                  <span class="option__text">Supaya terlihat misterius</span>
+                </button>
+                <button class="option" type="button" data-index="3">
+                  <span class="option__key" aria-hidden="true">D</span>
+                  <span class="option__text">Karena batu itu sahabatnya</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="clue-row">
+            <div class="clue-card">
+              <span class="clue-card__icon" aria-hidden="true"
+                ><svg class="icon" viewBox="0 0 24 24">
+                  <use href="#i-lock" /></svg
+              ></span>
+              <div>
+                <p class="clue-card__label">Hadiah Clue</p>
+                <p class="clue-card__text" id="clue-text">
+                  Terkunci. Jawab benar untuk membuka petunjuk kode.
+                </p>
+              </div>
+            </div>
+            <button
+              class="btn btn--ghost btn--small"
+              id="btn-hint"
+              type="button"
+            >
+              Hint
+            </button>
+          </div>
+
+          <div class="btn-row btn-row--split">
+            <button
+              class="btn btn--ghost btn--small"
+              type="button"
+              data-go="box"
+            >
+              Kembali
+            </button>
+            <button
+              class="btn btn--primary btn--small"
+              id="btn-puzzle-next"
+              type="button"
+              data-go="minigame"
+            >
+              Lanjut
+            </button>
+          </div>
+        </section>
+
+        <section
+          class="screen screen--minigame"
+          id="screen-minigame"
+          data-screen="minigame"
+          aria-label="Layar mini-game save the fish"
+          aria-hidden="true"
+        >
+          <div class="minigame-hud">
+            <div class="hud-block">
+              <span class="hud-block__label">SCOR</span>
+              <strong
+                class="hud-block__value"
+                id="fish-score"
+                aria-live="polite"
+                >0</strong
+              >
+            </div>
+            <div class="hud-title">
+              <span>SAVE THE FISH</span>
+              <small>LEVEL 1 · SUNGAI PASTEL</small>
+            </div>
+            <div class="hud-block hud-block--lives">
+              <span class="hud-block__label">NYAWA</span>
+              <div class="lives" id="fish-lives" aria-label="Sisa 3 nyawa">
+                <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#i-heart" />
+                </svg>
+                <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#i-heart" />
+                </svg>
+                <svg class="heart" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#i-heart" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-frame canvas-frame--fish">
+            <canvas
+              id="fish-canvas"
+              width="720"
+              height="960"
+              aria-label="Area mini-game menyelamatkan ikan"
+            ></canvas>
+            <p class="canvas-overlay-note">
+              Geser atau sentuh untuk menggerakkan keranjang
+            </p>
+          </div>
+
+          <div class="minigame-foot">
+            <p class="field-hint">
+              Tangkap ikan, hindari tulang ikan dan bom. Kehilangan 3 nyawa
+              membuat halaman ini ngambek.
+            </p>
+            <div class="minigame-foot__actions">
+              <button
+                class="btn btn--primary btn--small"
+                id="btn-fish-retry"
+                type="button"
+                hidden
+              >
+                Main Lagi
+              </button>
+              <button
+                class="btn btn--ghost btn--small"
+                id="btn-fish-exit"
+                type="button"
+                data-go="mountain"
+              >
+                Keluar
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="screen"
+          id="screen-mountain"
+          data-screen="mountain"
+          aria-label="Layar mountain mystery"
+          aria-hidden="true"
+        >
+          <div class="screen__head">
+            <span class="eyebrow">MOUNTAIN MYSTERY</span>
+            <span class="chip chip--blue">ALT. 2.048 M</span>
+          </div>
+
+          <div class="mountain-scene">
+            <svg
+              class="mountain-scene__art"
+              viewBox="0 0 360 140"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="mountain-sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#D4ECFF" />
+                  <stop offset="1" stop-color="#EBF6FF" />
+                </linearGradient>
+              </defs>
+              <rect width="360" height="140" fill="url(#mountain-sky)" />
+              <circle
+                cx="296"
+                cy="34"
+                r="18"
+                fill="#FFF6E6"
+                stroke="#332B3A"
+                stroke-width="2.5"
+              />
+              <path
+                d="M-24 132 70 32l38 44 32-30 92 86Z"
+                fill="#C5E7FF"
+                stroke="#332B3A"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M70 32l24 28-17 4-11-12-12 10Z"
+                fill="#FFFDF7"
+                opacity=".95"
+              />
+              <path
+                d="M146 132 244 50l34 30 30-24 76 76Z"
+                fill="#A3D6FA"
+                stroke="#332B3A"
+                stroke-width="3"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M244 50l17 15-11 3-7-8-8 6Z"
+                fill="#FFFDF7"
+                opacity=".95"
+              />
+              <rect x="150" y="132" width="220" height="10" fill="#CDEEDD" />
+              <ellipse
+                cx="88"
+                cy="118"
+                rx="86"
+                ry="12"
+                fill="#FFFDF7"
+                opacity=".7"
+              />
+              <ellipse
+                cx="276"
+                cy="124"
+                rx="96"
+                ry="14"
+                fill="#FFFDF7"
+                opacity=".75"
+              />
+              <path
+                d="M44 92h34v8H44zM48 100h26v30H48z"
+                fill="#F1C3A3"
+                stroke="#332B3A"
+                stroke-width="2"
+              />
+              <text
+                x="61"
+                y="101"
+                text-anchor="middle"
+                font-family="'Press Start 2P', monospace"
+                font-size="6"
+                fill="#332B3A"
+              >
+                ?
+              </text>
+            </svg>
+            <p class="mountain-scene__caption">
+              Kabut di sini berbau awan biru. Mencurigakan.
+            </p>
+          </div>
+
+          <div class="path-list" aria-label="Pilihan jalur">
+            <button class="path-card" type="button" data-path="cave">
+              <span class="path-card__icon"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#i-mountain" /></svg
+              ></span>
+              <span class="path-card__body">
+                <span class="path-card__title">Jalur Gua Kabut</span>
+                <span class="path-card__desc"
+                  >Gelap, lembap, kemungkinan besar ada otter.</span
+                >
+              </span>
+              <span class="path-card__arrow" aria-hidden="true">→</span>
+            </button>
+            <button
+              class="path-card path-card--blue"
+              type="button"
+              data-path="lake"
+            >
+              <span class="path-card__icon"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#i-fish" /></svg
+              ></span>
+              <span class="path-card__body">
+                <span class="path-card__title">Jalur Danau Terbalik</span>
+                <span class="path-card__desc"
+                  >Airnya memantul ke langit. Jangan diikuti.</span
+                >
+              </span>
+              <span class="path-card__arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="keypad-teaser">
+            <span class="keypad-teaser__icon" aria-hidden="true"
+              ><svg class="icon" viewBox="0 0 24 24"><use href="#i-lock" /></svg
+            ></span>
+            <div class="keypad-teaser__body">
+              <p class="keypad-teaser__title">Pintu gua terkunci 4 digit</p>
+              <p class="keypad-teaser__hint">
+                Clue-nya mungkin terselip di puzzle tadi.
+              </p>
+            </div>
+            <button
+              class="btn btn--primary btn--small"
+              id="btn-keypad-open"
+              type="button"
+              data-go="keypad"
+            >
+              Keypad
+            </button>
+          </div>
+
+          <div class="btn-row btn-row--split">
+            <button
+              class="btn btn--ghost btn--small"
+              type="button"
+              data-go="minigame"
+            >
+              minigame
+            </button>
+            <button
+              class="btn btn--ghost btn--small"
+              id="btn-house"
+              type="button"
+              data-go="rpg"
+            >
+              Menuju rumah
+            </button>
+          </div>
+        </section>
+
+        <section
+          class="screen screen--keypad"
+          id="screen-keypad"
+          data-screen="keypad"
+          aria-label="Layar keypad empat digit"
+          aria-hidden="true"
+        >
+          <div class="keypad-hero">
+            <span class="keypad-hero__lock" aria-hidden="true"
+              ><svg class="icon" viewBox="0 0 24 24"><use href="#i-lock" /></svg
+            ></span>
+            <p class="eyebrow">SECURITY</p>
+            <p class="keypad-hero__sub">Hanya yang tahu kode boleh masuk.</p>
+          </div>
+
+          <div class="window window--keypad">
+            <div class="window__bar">
+              <span class="window__dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+              <span class="window__title">ENTER 4-DIGIT CODE</span>
+              <span class="window__grip" aria-hidden="true"></span>
+            </div>
+            <div class="window__body">
+              <p class="keypad-prompt">
+                Masukkan kode dari clue untuk membuka pintu gua.
+              </p>
+              <output
+                class="keypad-display"
+                id="keypad-display"
+                aria-live="polite"
+                >_ _ _ _</output
+              >
+              <div
+                class="keypad"
+                id="keypad"
+                role="group"
+                aria-label="Keypad angka"
+              >
+                <button class="keypad__key" type="button" data-key="1">
+                  1
+                </button>
+                <button class="keypad__key" type="button" data-key="2">
+                  2
+                </button>
+                <button class="keypad__key" type="button" data-key="3">
+                  3
+                </button>
+                <button class="keypad__key" type="button" data-key="4">
+                  4
+                </button>
+                <button class="keypad__key" type="button" data-key="5">
+                  5
+                </button>
+                <button class="keypad__key" type="button" data-key="6">
+                  6
+                </button>
+                <button class="keypad__key" type="button" data-key="7">
+                  7
+                </button>
+                <button class="keypad__key" type="button" data-key="8">
+                  8
+                </button>
+                <button class="keypad__key" type="button" data-key="9">
+                  9
+                </button>
+                <button
+                  class="keypad__key keypad__key--util"
+                  type="button"
+                  data-key="clear"
+                >
+                  C
+                </button>
+                <button class="keypad__key" type="button" data-key="0">
+                  0
+                </button>
+                <button
+                  class="keypad__key keypad__key--ok"
+                  type="button"
+                  data-key="submit"
+                >
+                  OK
+                </button>
+              </div>
+              <p class="keypad-message" id="keypad-message" role="status">
+                Belum ada percobaan hari ini. Semoga beruntung.
+              </p>
+            </div>
+          </div>
+
+          <button
+            class="link-btn link-btn--center"
+            type="button"
+            data-go="mountain"
+          >
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#i-arrow-left" /></svg
+            >kembali ke jalur
+          </button>
+        </section>
+
+        <section
+          class="screen screen--rpg"
+          id="screen-rpg"
+          data-screen="rpg"
+          aria-label="Layar eksplorasi rumah"
+          aria-hidden="true"
+        >
+          <div class="screen__head">
+            <span class="eyebrow" id="rpg-location">HALAMAN DEPAN</span>
+            <span class="chip" id="rpg-quest">MISI: CARI KUNCI</span>
+          </div>
+
+          <div class="canvas-frame canvas-frame--rpg">
+            <canvas
+              id="rpg-canvas"
+              width="800"
+              height="1120"
+              aria-label="Area eksplorasi luar dan dalam rumah"
+            ></canvas>
+            <p class="rpg-prompt" id="rpg-prompt">Dekati objek, lalu tekan A</p>
+          </div>
+
+          <div class="rpg-controls">
+            <div class="dpad" role="group" aria-label="Kontrol arah">
+              <button
+                class="dpad__btn dpad__btn--up"
+                type="button"
+                data-dir="up"
+                aria-label="Atas"
+              >
+                ▲
+              </button>
+              <button
+                class="dpad__btn dpad__btn--left"
+                type="button"
+                data-dir="left"
+                aria-label="Kiri"
+              >
+                ◀
+              </button>
+              <span class="dpad__hub" aria-hidden="true"></span>
+              <button
+                class="dpad__btn dpad__btn--right"
+                type="button"
+                data-dir="right"
+                aria-label="Kanan"
+              >
+                ▶
+              </button>
+              <button
+                class="dpad__btn dpad__btn--down"
+                type="button"
+                data-dir="down"
+                aria-label="Bawah"
+              >
+                ▼
+              </button>
+            </div>
+            <button
+              class="action-btn"
+              id="btn-a"
+              type="button"
+              aria-label="Tombol aksi A"
+            >
+              A
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div class="scanlines" aria-hidden="true"></div>
+      <div class="crt-edge" aria-hidden="true"></div>
+
+      <noscript>
+        <p class="noscript">
+          Erorr. Nama kamu tidak akan tercatat di sertifikat insiden.
+        </p>
+      </noscript>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay" hidden>
+      <div
+        class="modal-window"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <header class="modal-window__bar">
+          <span class="window__dots" aria-hidden="true"
+            ><i></i><i></i><i></i
+          ></span>
+          <h2 class="modal-window__title" id="modal-title">OTTER_ALERT</h2>
+          <button
+            class="modal-close"
+            id="modal-close"
+            type="button"
+            aria-label="Tutup modal"
+          >
+            ×
+          </button>
+        </header>
+        <div class="modal-window__screen" id="modal-screen"></div>
+      </div>
+    </div>
+
+    <template id="photobooth-template">
+      <div class="retro-card photobooth-card">
+        <div class="retro-card__nav">
+          <button type="button" class="retro-back-btn" data-retro-back="true">
+            ← Kembali
+          </button>
+        </div>
+        <div class="retro-card__body">
+          <p class="retro-card__heading">BILIK PHOTOBOOTH · KAMERA ASLI</p>
+          <p class="retro-card__sub">
+            Senyum dulu. Otter sedang mengawasi dari sebelah kiri.
+          </p>
+
+          <div
+            class="photo-camera-frame"
+            id="photo-camera-frame"
+            data-frame="a"
+          >
+            <video
+              id="photobooth-video"
+              autoplay
+              muted
+              playsinline
+              aria-label="Pratinjau kamera depan"
+            ></video>
+            <canvas
+              id="photobooth-sticker-canvas"
+              width="640"
+              height="800"
+              aria-hidden="true"
+            ></canvas>
+            <div class="photo-live-overlay" aria-hidden="true">
+              <span class="photo-overlay-border"></span>
+              <span class="sticker sticker--ear sticker--ear-left"></span>
+              <span class="sticker sticker--ear sticker--ear-right"></span>
+              <span
+                class="photo-overlay-caption photo-overlay-caption--birthday"
+                >HAPPY BIRTHDAY</span
+              >
+              <span class="photo-overlay-caption photo-overlay-caption--star"
+                >✦ BINTANG &amp; KONFETI ✦</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-1"
+                >✦</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-2"
+                >●</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-3"
+                >✦</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-4"
+                >●</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-5"
+                >✦</span
+              >
+              <span class="sticker sticker--confetti sticker--confetti-6"
+                >●</span
+              >
+            </div>
+            <p
+              class="photo-camera-status"
+              id="photo-camera-status"
+              role="status"
+            >
+              Menyiapkan kamera…
+            </p>
+          </div>
+
+          <canvas
+            id="photobooth-canvas"
+            width="640"
+            height="800"
+            aria-label="Hasil foto photobooth"
+            hidden
+          ></canvas>
+
+          <div class="photo-preview-wrap" id="photo-preview-wrap" hidden>
+            <img id="photo-preview" alt="Pratinjau foto yang sudah dijepret" />
+          </div>
+
+          <div class="photo-choice-section photo-pose-section">
+            <p class="photo-section-label">POSE KARAKTER OTTER</p>
+            <div class="photo-choice-group photo-choice-group--pose">
+              <button
+                type="button"
+                class="photo-choice photo-choice--pose"
+                data-pose="wave"
+              >
+                Pose 1 <br />Otter Dadah
+              </button>
+              <button
+                type="button"
+                class="photo-choice photo-choice--pose"
+                data-pose="cake"
+              >
+                Pose 2 <br />Pegang Kue
+              </button>
+              <button
+                type="button"
+                class="photo-choice photo-choice--pose"
+                data-pose="heart"
+              >
+                Pose 3 <br />Saranghaeyo
+              </button>
+              <button
+                type="button"
+                class="photo-choice photo-choice--pose"
+                data-pose="hoodie"
+              >
+                Pose 4 <br />Otter Baddie
+              </button>
+            </div>
+          </div>
+
+          <div class="photo-choice-section">
+            <p class="photo-section-label">BINGKAI &amp; STIKER</p>
+            <div class="photo-choice-group">
+              <button type="button" class="photo-choice" data-frame="a">
+                Biru Pastel<br />+ Telinga Otter
+              </button>
+              <button type="button" class="photo-choice" data-frame="b">
+                Photostrip<br />Happy Birthday
+              </button>
+              <button type="button" class="photo-choice" data-frame="c">
+                Bintang<br />+ Konfeti
+              </button>
+            </div>
+          </div>
+
+          <div class="photo-actions">
+            <button
+              type="button"
+              class="retro-action-btn"
+              id="btn-take-photo"
+              disabled
+            >
+              Ambil Foto
+            </button>
+            <div
+              class="photo-actions__secondary"
+              id="photo-result-actions"
+              hidden
+            >
+              <button
+                type="button"
+                class="retro-back-btn"
+                id="btn-retake-photo"
+              >
+                Jepret Ulang
+              </button>
+              <button
+                type="button"
+                class="retro-action-btn"
+                id="btn-save-photo"
+              >
+                Simpan &amp; Unduh Foto
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="retro-card__nav retro-card__nav--bottom">
+          <button type="button" class="retro-back-btn" data-retro-back="true">
+            ← Kembali
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <script src="config.js" defer></script>
+    <script src="room.js" defer></script>
+    <script src="game.js" defer></script>
+  </body>
+</html>
